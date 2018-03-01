@@ -318,9 +318,12 @@ public class GuiBot extends DefaultBWListener {
     public void trainAndResearch () {
         for (Unit myUnit : self.getUnits()) {
             //if there's enough minerals, train a probe
-            if (myUnit.getType() == UnitType.Protoss_Nexus && myUnit.isCompleted()
-            	&& self.completedUnitCount(UnitType.Protoss_Probe) <= self.completedUnitCount(UnitType.Protoss_Nexus)*30) {
-            	prepareUnit(myUnit, UnitType.Protoss_Probe);
+            if (myUnit.getType() == UnitType.Protoss_Nexus && myUnit.isCompleted()) {
+		//int mc = myUnit.getUnitsInRadius(20,IsMineralField);
+		//int pc = 0;
+            	if (myUnit.getUnitsInRadius(20,IsWorker && !IsGatheringGas) < 2.25*myUnit.getUnitsInRadius(20,IsMineralField)) {
+            		prepareUnit(myUnit, UnitType.Protoss_Probe);
+		} //else if
             }
         }
         for (Unit myUnit : self.getUnits()) {
@@ -453,7 +456,7 @@ public class GuiBot extends DefaultBWListener {
     			}     
 	        	for (Unit u: self.getUnits()) {
 	        		if (gasCount > gasCap) {
-	        			if(u.isGatheringGas() && !u.isCarryingGas()) {
+	        			if(u.isGatheringGas() && u.getTarget() == myUnit && !u.isCarryingGas()) {
 	        				gatherMinerals(u);
 	        				gasCount--;
 	        			}
