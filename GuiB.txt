@@ -48,8 +48,8 @@ public class GuiBot extends DefaultBWListener {
     private int resumeGas;
     private int gasCap;  
     // Creating a Hashtable for gas factory
-    Hashtable<int, int> gasFactHash = 
-              new Hashtable<int, int>();  
+    HashMap<int, int> gasFactHash = 
+              new HashMap<int, int>();  
     
     private Unit scoutingProbe;
     private TilePosition enemyMain;
@@ -447,7 +447,7 @@ public class GuiBot extends DefaultBWListener {
     		if(myUnit.getType() == UnitType.Protoss_Assimilator && myUnit.isCompleted()) {
     			//needs some work for expos wis partial gas saturation   && !myUnit.isBeingGathered()
     			for (Unit u: self.getUnits()) {
-    				if(u.isGatheringGas()) {
+    				if(u.isGatheringGas() && u.getTarget() == myUnit) {
     					gasCount++;
     				}
     			}     
