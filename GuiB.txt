@@ -784,7 +784,7 @@ public class TestBot1 extends DefaultBWListener {
 	    		bestTile = null;
 	    		//build a spotter pylon
 		    	for(int x = baseTile.getX() - 35; x <= baseTile.getX() +28; x += 4) {
-		        	for(int y = baseTile.getY() - 14; y <= baseTile.getY() +20; y += 3) {	 
+		        	for(int y = baseTile.getY() - 14; y <= baseTile.getY() +15; y += 3) {	 
 		        		nextTile = new TilePosition(x,y);  //(int)(21*Math.random())
 		        		nextPosition = nextTile.toPosition();
 			    		if(BWTA.getRegion(baseTile).getPolygon().isInside(nextPosition) && game.canBuildHere(nextTile, nextItem) &&
